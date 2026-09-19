@@ -156,6 +156,130 @@ const contactStatus = document.querySelector('.contact-form-status');
 const contactServiceField = document.querySelector('[data-service-field]');
 const contactProjectType = document.querySelector('[data-project-type]');
 
+const enhancedSelects = [];
+
+const enhanceSelect = (select, index) => {
+  const wrapper = document.createElement('div');
+  const trigger = document.createElement('button');
+  const triggerText = document.createElement('span');
+  const menu = document.createElement('div');
+  const menuId = `contact-select-menu-${index + 1}`;
+  const options = Array.from(select.options);
+  let activeIndex = Math.max(select.selectedIndex, 0);
+
+  wrapper.className = 'custom-select is-enhanced';
+  trigger.className = 'custom-select-trigger';
+  trigger.type = 'button';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-controls', menuId);
+  menu.className = 'custom-select-menu';
+  menu.id = menuId;
+  menu.hidden = true;
+  menu.setAttribute('role', 'listbox');
+
+  select.parentNode.insertBefore(wrapper, select);
+  wrapper.append(select, trigger, menu);
+  trigger.appendChild(triggerText);
+
+  const optionButtons = options.map((option, optionIndex) => {
+    const button = document.createElement('button');
+    button.className = 'custom-select-option';
+    button.type = 'button';
+    button.setAttribute('role', 'option');
+    button.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+    button.tabIndex = -1;
+    button.textContent = option.textContent;
+    button.addEventListener('click', () => selectOption(optionIndex));
+    menu.appendChild(button);
+    return button;
+  });
+
+  const syncFromNative = () => {
+    const selectedIndex = Math.max(select.selectedIndex, 0);
+    activeIndex = selectedIndex;
+    triggerText.textContent = options[selectedIndex]?.textContent || 'Choose one';
+    optionButtons.forEach((button, optionIndex) => {
+      button.setAttribute('aria-selected', optionIndex === selectedIndex ? 'true' : 'false');
+    });
+  };
+
+  const setActive = (nextIndex, focus = true) => {
+    activeIndex = Math.min(Math.max(nextIndex, 0), optionButtons.length - 1);
+    optionButtons.forEach((button, optionIndex) => button.classList.toggle('is-active', optionIndex === activeIndex));
+    if (focus) {
+      optionButtons[activeIndex]?.focus();
+      optionButtons[activeIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  };
+
+  const close = (restoreFocus = false) => {
+    wrapper.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    menu.hidden = true;
+    optionButtons.forEach((button) => button.classList.remove('is-active'));
+    if (restoreFocus) trigger.focus();
+  };
+
+  const open = (preferredIndex = select.selectedIndex) => {
+    enhancedSelects.forEach((item) => {
+      if (item.wrapper !== wrapper) item.close();
+    });
+    wrapper.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    menu.hidden = false;
+    setActive(Math.max(preferredIndex, 0));
+  };
+
+  function selectOption(optionIndex) {
+    select.selectedIndex = optionIndex;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    close(true);
+  }
+
+  trigger.addEventListener('click', () => {
+    if (wrapper.classList.contains('is-open')) close();
+    else open();
+  });
+
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      open(event.key === 'ArrowDown' ? Math.max(select.selectedIndex, 0) : optionButtons.length - 1);
+    }
+  });
+
+  menu.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setActive(activeIndex + (event.key === 'ArrowDown' ? 1 : -1));
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      setActive(event.key === 'Home' ? 0 : optionButtons.length - 1);
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      selectOption(activeIndex);
+    } else if (event.key === 'Escape' || event.key === 'Tab') {
+      close(event.key === 'Escape');
+    }
+  });
+
+  select.addEventListener('change', syncFromNative);
+  select.addEventListener('invalid', (event) => {
+    event.preventDefault();
+    open();
+  });
+  syncFromNative();
+  enhancedSelects.push({ wrapper, close, syncFromNative });
+};
+
+document.querySelectorAll('.contact-form select').forEach(enhanceSelect);
+document.addEventListener('click', (event) => {
+  enhancedSelects.forEach((item) => {
+    if (!item.wrapper.contains(event.target)) item.close();
+  });
+});
+
 if (contactDialog && contactForm) {
   document.querySelectorAll('[data-contact-form]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
@@ -163,7 +287,10 @@ if (contactDialog && contactForm) {
       const service = trigger.dataset.service || '';
 
       if (contactServiceField) contactServiceField.value = service || 'General inquiry';
-      if (contactProjectType) contactProjectType.value = service;
+      if (contactProjectType) {
+        contactProjectType.value = service;
+        contactProjectType.dispatchEvent(new Event('change', { bubbles: true }));
+      }
       if (contactStatus) {
         contactStatus.textContent = '';
         contactStatus.classList.remove('is-error');
@@ -209,6 +336,7 @@ if (contactDialog && contactForm) {
 
       contactForm.reset();
       if (contactServiceField) contactServiceField.value = 'General inquiry';
+      window.requestAnimationFrame(() => enhancedSelects.forEach((item) => item.syncFromNative()));
       if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
     } catch (error) {
       if (contactStatus) {
