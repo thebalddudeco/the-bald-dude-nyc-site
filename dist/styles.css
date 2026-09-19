@@ -155,8 +155,24 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-form-actions button:hover { background: white; }
 .contact-form-actions button:disabled { opacity: .55; cursor: wait; }
 .contact-honey { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
-.reveal { opacity: 0; transform: translateY(42px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-.reveal.visible { opacity: 1; transform: none; }
+.reveal:not(.checker-reveal) { opacity: 0; transform: translateY(42px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal:not(.checker-reveal).visible { opacity: 1; transform: none; }
+.checker-reveal { position: relative; isolation: isolate; opacity: 1; transform: none; }
+.checker-reveal-grid { position: absolute; inset: 0; z-index: 4; display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(6, 1fr); overflow: hidden; pointer-events: none; }
+.checker-reveal-grid i { display: block; min-width: 0; min-height: 0; background: var(--tile-tone); transform: scale(1.04); transform-origin: center; will-change: transform, opacity; }
+.checker-reveal.visible .checker-reveal-grid i { animation: checker-away .42s steps(3, end) var(--tile-delay) forwards; }
+.checker-reveal.visible .checker-reveal-grid { animation: checker-grid-away 0s linear .82s forwards; }
+.instagram-grid a::after { z-index: 5; }
+@keyframes checker-away {
+  0%, 42% { opacity: 1; transform: scale(1.04); }
+  43%, 76% { opacity: 1; transform: scale(.62); }
+  77%, 100% { opacity: 0; transform: scale(0); }
+}
+@keyframes checker-grid-away { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
+  .checker-reveal-grid { display: none; }
+}
 @media (max-width: 760px) {
   body { border-width: 8px; }
   .site-header { inset: 8px 8px auto; grid-template-columns: 64px 1fr 104px; }

@@ -1,13 +1,50 @@
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const checkerTargets = document.querySelectorAll('.shot, .portrait-wrap, .instagram-grid a');
+
+checkerTargets.forEach((target, targetIndex) => {
+  target.classList.add('checker-reveal');
+
+  if (reducedMotion) {
+    target.classList.add('visible');
+    return;
+  }
+
+  const grid = document.createElement('span');
+  grid.className = 'checker-reveal-grid';
+  grid.setAttribute('aria-hidden', 'true');
+
+  for (let row = 0; row < 6; row += 1) {
+    for (let column = 0; column < 10; column += 1) {
+      const tile = document.createElement('i');
+      const sequence = (row * 7 + column * 11 + targetIndex * 5) % 22;
+      tile.style.setProperty('--tile-delay', `${sequence * 17}ms`);
+      tile.style.setProperty('--tile-tone', (row + column + targetIndex) % 2 ? 'var(--ink)' : 'var(--acid)');
+      grid.appendChild(tile);
+    }
+  }
+
+  target.appendChild(grid);
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      const reveal = () => entry.target.classList.add('visible');
+      const image = entry.target.matches('.checker-reveal') ? entry.target.querySelector('img') : null;
+
+      if (image && !image.complete) {
+        image.addEventListener('load', reveal, { once: true });
+        image.addEventListener('error', reveal, { once: true });
+      } else {
+        reveal();
+      }
+
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.14 });
 
-document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
+document.querySelectorAll('.reveal, .checker-reveal').forEach((item) => observer.observe(item));
 
 const clock = document.querySelector('.clock');
 if (clock) {
@@ -28,8 +65,6 @@ if (clock) {
 const hero = document.querySelector('.hero');
 const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
 const heroSequence = document.querySelector('.hero-sequence span');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 if (hero && heroSlides.length > 1 && !reducedMotion) {
   let activeIndex = 0;
   let timer;
