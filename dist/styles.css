@@ -3,8 +3,8 @@
 :root {
   --ink: #07080a;
   --paper: #f4f1ea;
-  --acid: #ff006f;
-  --line: rgba(255, 0, 111, .78);
+  --acid: #ff004c;
+  --line: rgba(255, 0, 76, .78);
 }
 
 * { box-sizing: border-box; }
