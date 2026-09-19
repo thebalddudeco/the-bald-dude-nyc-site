@@ -14,7 +14,7 @@
       <nav aria-label="Primary navigation">
         <a href="#work">Gallery</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact-form" data-contact-form>Contact</a>
       </nav>
       <p class="system-note"><span>Powered by:</span> Human instinct™</p>
       <a class="archive-link" href="#work">NYC Archive →</a>
@@ -143,18 +143,38 @@
           <h2 id="services-title">Available for</h2>
         </header>
         <div class="service-list">
-          <a href="https://www.thebalddude.co/contact/"><span>01</span><b>Fashion + Editorial</b><em>Campaigns / lookbooks / street stories</em><i>↗</i></a>
-          <a href="https://www.thebalddude.co/contact/"><span>02</span><b>Events + Backstage</b><em>Launches / fashion week / after dark</em><i>↗</i></a>
-          <a href="https://www.thebalddude.co/contact/"><span>03</span><b>Portraits</b><em>Artists / founders / people with a point of view</em><i>↗</i></a>
-          <a href="https://www.thebalddude.co/contact/"><span>04</span><b>Weddings</b><em>Courthouse / intimate / beautifully unforced</em><i>↗</i></a>
-          <a href="https://www.thebalddude.co/contact/"><span>05</span><b>Commercial</b><em>Product / brand / social campaigns</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Fashion + Editorial"><span>01</span><b>Fashion + Editorial</b><em>Campaigns / lookbooks / street stories</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Events + Backstage"><span>02</span><b>Events + Backstage</b><em>Launches / fashion week / after dark</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Portraits"><span>03</span><b>Portraits</b><em>Artists / founders / people with a point of view</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Weddings"><span>04</span><b>Weddings</b><em>Courthouse / intimate / beautifully unforced</em><i>↗</i></a>
+          <a href="#contact-form" data-contact-form data-service="Commercial"><span>05</span><b>Commercial</b><em>Product / brand / social campaigns</em><i>↗</i></a>
         </div>
       </section>
 
       <section id="contact" class="contact" aria-labelledby="contact-title">
         <p class="label">Bookings / collaborations / beautiful trouble</p>
         <h2 id="contact-title">Get in front<br />of my camera.</h2>
-        <a class="contact-cta" href="https://www.thebalddude.co/contact/">Start a project <span>↗</span></a>
+        <a class="contact-cta" href="#contact-form" data-contact-form>Start a project <span>↗</span></a>
+        <section class="instagram-feed" aria-labelledby="instagram-title">
+          <header class="instagram-feed-head">
+            <h3 id="instagram-title">Your story is already happening.<br />Let’s photograph it well.</h3>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer">Instagram / @thebalddude.dng ↗</a>
+          </header>
+          <div class="instagram-grid">
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-01.jpg" alt="Model in sunglasses and a patterned look photographed with direct flash" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-02.jpg" alt="Model in leopard print leaning into a direct-flash portrait" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-03.jpg" alt="Close direct-flash portrait of a model with curly hair" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-04.jpg" alt="Model in a black evening look posing after dark" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-05.jpg" alt="Direct-flash portrait of a model in a textured peach look" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-06.jpg" alt="Smiling model in a burgundy evening look" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-07.jpg" alt="Close direct-flash portrait of a model waving" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-08.jpg" alt="Model in a zebra-print halter look photographed candidly" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-09.jpg" alt="Model in a pale embellished look posing backstage" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-10.jpg" alt="Direct-flash portrait of a model in a white top" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-11.jpg" alt="Model in a black tailored look photographed at an event" loading="lazy" /></a>
+            <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram-12.jpg" alt="Model in a sheer red fashion look photographed with direct flash" loading="lazy" /></a>
+          </div>
+        </section>
         <div class="contact-footer">
           <p class="footer-brand"><img src="assets/brand-stacked.png" alt="The Bald Dude" /><span>Brooklyn, New York</span></p>
           <div>
@@ -166,6 +186,56 @@
         </div>
       </section>
     </main>
+
+    <dialog id="contact-form" class="contact-dialog" aria-labelledby="contact-form-title">
+      <div class="contact-dialog-shell">
+        <button class="contact-dialog-close" type="button" aria-label="Close contact form">×</button>
+        <div class="contact-dialog-intro">
+          <p class="label">New work / New York + worldwide</p>
+          <h2 id="contact-form-title">Tell me what<br />we’re making.</h2>
+          <p>Give me the shape of the project. I’ll reply directly with availability, questions, and the clearest next step.</p>
+        </div>
+        <form class="contact-form" action="https://formsubmit.co/info@thebalddude.co" method="POST">
+          <input type="hidden" name="_subject" value="NEW CLIENT" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="Requested Service" value="General inquiry" data-service-field />
+          <input class="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+          <label><span>Name *</span><input type="text" name="Name" autocomplete="name" required /></label>
+          <label><span>Email *</span><input type="email" name="email" autocomplete="email" required /></label>
+          <label><span>Phone</span><input type="tel" name="Phone" autocomplete="tel" /></label>
+          <label>
+            <span>Project type *</span>
+            <select name="Project Type" data-project-type required>
+              <option value="">Choose one</option>
+              <option>Fashion + Editorial</option>
+              <option>Events + Backstage</option>
+              <option>Portraits</option>
+              <option>Weddings</option>
+              <option>Commercial</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label><span>Target date</span><input type="date" name="Target Date" /></label>
+          <label>
+            <span>Estimated budget</span>
+            <select name="Estimated Budget">
+              <option value="">Choose a range</option>
+              <option>Under $1,000</option>
+              <option>$1,000–$2,500</option>
+              <option>$2,500–$5,000</option>
+              <option>$5,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label class="contact-form-wide"><span>Instagram / website</span><input type="url" name="Instagram or Website" placeholder="https://" /></label>
+          <label class="contact-form-wide"><span>Tell me about the project *</span><textarea name="Project Details" rows="6" required></textarea></label>
+          <div class="contact-form-actions contact-form-wide">
+            <p class="contact-form-status" role="status" aria-live="polite"></p>
+            <button type="submit">Send inquiry <span>↗</span></button>
+          </div>
+        </form>
+      </div>
+    </dialog>
     <script src="script.js"></script>
   </body>
 </html>

@@ -69,3 +69,74 @@ if (hero && heroSlides.length > 1 && !reducedMotion) {
 
   timer = window.setTimeout(() => activateSlide(1), Number(heroSlides[0].dataset.duration) || 1100);
 }
+
+const contactDialog = document.querySelector('.contact-dialog');
+const contactForm = document.querySelector('.contact-form');
+const contactStatus = document.querySelector('.contact-form-status');
+const contactServiceField = document.querySelector('[data-service-field]');
+const contactProjectType = document.querySelector('[data-project-type]');
+
+if (contactDialog && contactForm) {
+  document.querySelectorAll('[data-contact-form]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const service = trigger.dataset.service || '';
+
+      if (contactServiceField) contactServiceField.value = service || 'General inquiry';
+      if (contactProjectType) contactProjectType.value = service;
+      if (contactStatus) {
+        contactStatus.textContent = '';
+        contactStatus.classList.remove('is-error');
+      }
+
+      contactDialog.showModal();
+      document.body.classList.add('dialog-open');
+      window.setTimeout(() => contactForm.querySelector('input:not([type="hidden"])')?.focus(), 0);
+    });
+  });
+
+  const closeContactDialog = () => {
+    contactDialog.close();
+    document.body.classList.remove('dialog-open');
+  };
+
+  contactDialog.querySelector('.contact-dialog-close')?.addEventListener('click', closeContactDialog);
+  contactDialog.addEventListener('click', (event) => {
+    if (event.target === contactDialog) closeContactDialog();
+  });
+  contactDialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    submitButton.disabled = true;
+    if (contactStatus) {
+      contactStatus.textContent = 'Sending your inquiry…';
+      contactStatus.classList.remove('is-error');
+    }
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@thebalddude.co', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (!response.ok || result.success === false) throw new Error('Submission failed');
+
+      contactForm.reset();
+      if (contactServiceField) contactServiceField.value = 'General inquiry';
+      if (contactStatus) contactStatus.textContent = 'Inquiry sent. Justin will reply directly.';
+    } catch (error) {
+      if (contactStatus) {
+        contactStatus.textContent = 'That did not send. Email info@thebalddude.co directly and I’ll get back to you.';
+        contactStatus.classList.add('is-error');
+      }
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+}

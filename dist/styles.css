@@ -10,6 +10,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--ink); color: white; font-family: "IBM Plex Mono", monospace; border: 16px solid var(--acid); }
+body.dialog-open { overflow: hidden; }
 a { color: inherit; }
 .site-header { position: fixed; inset: 16px 16px auto; z-index: 20; height: 46px; display: grid; grid-template-columns: 82px minmax(280px, 1fr) minmax(210px, .55fr) 150px; align-items: stretch; border-bottom: 1px solid var(--line); background: rgba(4,5,7,.78); backdrop-filter: blur(10px); }
 .mark { display: grid; place-items: center; overflow: hidden; background: var(--acid); color: var(--ink); text-decoration: none; }
@@ -114,6 +115,17 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .contact-cta { display: flex; align-items: center; justify-content: space-between; margin: 70px 0; padding: 22px 0 12px; border-bottom: 4px solid var(--acid); color: white; text-decoration: none; text-transform: uppercase; font-family: "Archivo Black", sans-serif; font-size: clamp(1.6rem, 4vw, 4rem); }
 .contact-cta:hover { color: var(--acid); }
 .contact-cta span { font-size: 1.4em; }
+.instagram-feed { margin: 10px clamp(-60px, -4vw, -14px) clamp(70px, 9vw, 125px); }
+.instagram-feed-head { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; padding: 0 clamp(14px, 4vw, 60px) 28px; }
+.instagram-feed-head h3 { margin: 0; font-family: "IBM Plex Mono", monospace; font-size: clamp(.9rem, 1.4vw, 1.2rem); font-weight: 500; line-height: 1.25; text-transform: uppercase; }
+.instagram-feed-head a { color: var(--acid); font-size: .72rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+.instagram-feed-head a:hover { color: white; }
+.instagram-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.instagram-grid a { position: relative; aspect-ratio: 1; overflow: hidden; background: #111; }
+.instagram-grid a::after { content: "↗"; position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; background: rgba(255,0,76,.76); color: var(--ink); font-family: "Archivo Black", sans-serif; font-size: clamp(2rem, 4vw, 4.5rem); transition: opacity .18s ease; }
+.instagram-grid img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.06) saturate(.94); transition: transform .45s ease; }
+.instagram-grid a:hover img { transform: scale(1.05); }
+.instagram-grid a:hover::after { opacity: 1; }
 .contact-footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 30px; align-items: end; border-top: 1px solid var(--line); padding-top: 20px; color: var(--acid); font-size: .68rem; line-height: 1.5; text-transform: uppercase; }
 .contact-footer p { margin: 0; }
 .footer-brand { display: flex; align-items: end; gap: 14px; }
@@ -121,6 +133,28 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .footer-brand span { display: block; padding-bottom: 4px; }
 .contact-footer div { display: flex; gap: 18px; }
 .contact-footer a { text-decoration: none; }
+.contact-dialog { width: min(1040px, calc(100vw - 32px)); max-height: calc(100svh - 32px); padding: 0; border: 2px solid var(--acid); background: var(--ink); color: white; box-shadow: 18px 18px 0 var(--acid); }
+.contact-dialog::backdrop { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); }
+.contact-dialog-shell { position: relative; display: grid; grid-template-columns: minmax(280px, .72fr) 1.28fr; gap: clamp(30px, 6vw, 90px); padding: clamp(30px, 5vw, 70px); }
+.contact-dialog-close { position: absolute; z-index: 2; top: 12px; right: 16px; padding: 0; border: 0; background: transparent; color: var(--acid); font: 400 2.5rem/1 "IBM Plex Mono", monospace; cursor: pointer; }
+.contact-dialog-close:hover { color: white; }
+.contact-dialog-intro h2 { margin: 0; color: var(--acid); font-family: "Archivo Black", sans-serif; font-size: clamp(2.8rem, 6vw, 6.4rem); line-height: .78; letter-spacing: -.075em; text-transform: uppercase; }
+.contact-dialog-intro > p:last-child { margin-top: 32px; font-size: 1rem; line-height: 1.55; }
+.contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 16px; align-content: start; }
+.contact-form label { display: grid; gap: 8px; }
+.contact-form label > span { color: var(--acid); font-size: .74rem; font-weight: 700; text-transform: uppercase; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(255,255,255,.52); border-radius: 0; padding: 11px 3px; background: transparent; color: white; font: 500 1rem/1.35 "IBM Plex Mono", monospace; }
+.contact-form select { color-scheme: dark; }
+.contact-form textarea { min-height: 128px; resize: vertical; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: 0; border-color: var(--acid); box-shadow: 0 2px 0 var(--acid); }
+.contact-form-wide { grid-column: 1 / -1; }
+.contact-form-actions { display: flex; justify-content: space-between; gap: 22px; align-items: center; }
+.contact-form-status { margin: 0; max-width: 34rem; font-size: .76rem; line-height: 1.45; text-transform: uppercase; }
+.contact-form-status.is-error { color: #ffb2c9; }
+.contact-form-actions button { flex: 0 0 auto; border: 0; padding: 16px 18px; background: var(--acid); color: var(--ink); font: 700 .86rem/1 "IBM Plex Mono", monospace; text-transform: uppercase; cursor: pointer; }
+.contact-form-actions button:hover { background: white; }
+.contact-form-actions button:disabled { opacity: .55; cursor: wait; }
+.contact-honey { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .reveal { opacity: 0; transform: translateY(42px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .reveal.visible { opacity: 1; transform: none; }
 @media (max-width: 760px) {
@@ -159,6 +193,15 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .service-list em { display: none; }
   .contact-footer { grid-template-columns: 1fr auto; }
   .contact-footer div { grid-column: 1 / -1; grid-row: 1; flex-wrap: wrap; }
+  .instagram-feed-head { grid-template-columns: 1fr; }
+  .instagram-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-dialog { width: calc(100vw - 16px); max-height: calc(100svh - 16px); box-shadow: none; }
+  .contact-dialog-shell { grid-template-columns: 1fr; padding: 58px 20px 28px; }
+  .contact-dialog-intro > p:last-child { margin-top: 22px; }
+  .contact-form { grid-template-columns: 1fr; }
+  .contact-form-wide { grid-column: auto; }
+  .contact-form-actions { display: grid; }
+  .contact-form-actions button { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
