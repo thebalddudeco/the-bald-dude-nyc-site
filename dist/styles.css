@@ -103,10 +103,11 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 @keyframes ticker { to { transform: translateX(-100%); } }
 @keyframes camera-flash { 0% { opacity: 0; } 35% { opacity: .32; } 100% { opacity: 0; } }
 .work { position: relative; overflow: hidden; padding: clamp(70px, 11vw, 160px) clamp(14px, 3vw, 45px); background: var(--paper); color: var(--ink); }
-.section-head { display: grid; grid-template-columns: 1fr 2fr auto; align-items: end; gap: 24px; margin-bottom: clamp(60px, 9vw, 120px); }
+.section-head { display: grid; grid-template-columns: minmax(160px, .5fr) 1.6fr minmax(220px, .65fr); align-items: end; gap: 30px; margin-bottom: clamp(60px, 9vw, 120px); }
 .section-head p { margin: 0; text-transform: uppercase; font-size: .72rem; }
+.section-head > p:first-child { font-weight: 700; }
 .section-head h2, .about h2, .services h2, .contact h2 { margin: 0; font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -.075em; }
-.section-head h2 { font-size: clamp(3rem, 8.5vw, 9rem); line-height: .82; }
+.section-head h2 { font-size: clamp(3.4rem, 9vw, 9.5rem); line-height: .76; letter-spacing: -.08em; }
 .section-no { writing-mode: vertical-rl; }
 .image-wall { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(10px, 1.7vw, 26px); align-items: start; }
 .shot { position: relative; margin: 0; overflow: hidden; background: #111; }
