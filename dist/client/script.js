@@ -63,6 +63,32 @@ if (siteMenu && menuTrigger) {
   document.fonts?.ready.then(syncMenuDividers);
 }
 
+const aboutPortrait = document.querySelector('.portrait-wrap');
+const aboutTitle = document.querySelector('#about-title');
+const aboutWordmark = document.querySelector('.about-wordmark');
+let aboutAlignmentFrame;
+
+const syncAboutPortrait = () => {
+  if (!aboutPortrait || !aboutTitle) return;
+  aboutPortrait.style.marginTop = '0px';
+  if (window.matchMedia('(max-width: 760px)').matches) return;
+
+  const capOffset = parseFloat(getComputedStyle(aboutTitle).fontSize) * 0.065;
+  const offset = Math.round(aboutTitle.getBoundingClientRect().top - aboutPortrait.getBoundingClientRect().top + capOffset);
+  aboutPortrait.style.marginTop = `${Math.max(0, offset)}px`;
+};
+
+const queueAboutPortraitSync = () => {
+  window.cancelAnimationFrame(aboutAlignmentFrame);
+  aboutAlignmentFrame = window.requestAnimationFrame(syncAboutPortrait);
+};
+
+queueAboutPortraitSync();
+window.addEventListener('load', queueAboutPortraitSync);
+window.addEventListener('resize', queueAboutPortraitSync);
+aboutWordmark?.addEventListener('load', queueAboutPortraitSync, { once: true });
+document.fonts?.ready.then(queueAboutPortraitSync);
+
 const initializeCheckerReveal = (target) => {
   if (target.classList.contains('checker-reveal')) return;
   const targetIndex = checkerTargetIndex;
