@@ -2,6 +2,14 @@ const archiveUrl = 'https://huggingface.co/datasets/TheBaldDudeCo/website-galler
 
 const carousels = Array.from(document.querySelectorAll('[data-carousel]'));
 
+const imageFocalPoints = {
+  'dscf0880-1.webp': '77% 50%',
+  'dscf0884-1.webp': '60% 50%',
+  'dscf0965-1.webp': '58% 50%',
+  'dscf0966-1.webp': '54% 50%',
+  'dscf0971-1.webp': '32% 50%'
+};
+
 const moveCarousel = (track, direction) => {
   const distance = Math.max(track.clientWidth * 0.78, 300);
   track.scrollBy({ left: direction * distance, behavior: 'smooth' });
@@ -40,6 +48,8 @@ const createMediaCard = (item, albumName, index) => {
     image.alt = `${albumName} photograph ${index + 1}`;
     image.loading = 'lazy';
     image.decoding = 'async';
+    const fileName = decodeURIComponent(new URL(item.url).pathname.split('/').pop()).toLowerCase();
+    image.style.objectPosition = imageFocalPoints[fileName] || '50% 50%';
     figure.appendChild(image);
   }
 
