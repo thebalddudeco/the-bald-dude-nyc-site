@@ -52,7 +52,7 @@ a { color: inherit; }
 .nav-index a:nth-child(3) { --row: 2; }
 .nav-index a:nth-child(4) { --row: 3; }
 .nav-index a span, .nav-index a em { font-size: .7rem; font-style: normal; font-weight: 700; }
-.nav-index a b { font-family: var(--font-display); font-size: clamp(3.1rem,7.4vw,8rem); font-weight: 900; line-height: .78; letter-spacing: -.075em; }
+.nav-index a b { font-family: var(--font-display); font-size: clamp(3.1rem,7.4vw,8rem); font-weight: 900; line-height: .78; letter-spacing: -.035em; }
 .nav-index a i { font-style: normal; font-size: clamp(2rem,4vw,4.5rem); text-align: right; transition: transform .15s ease; }
 .nav-index a:hover, .nav-index a:focus-visible { outline: 0; padding-left: clamp(28px,4.5vw,72px); background: var(--ink); color: white; }
 .nav-index a:hover span, .nav-index a:focus-visible span { color: var(--acid); }
