@@ -11,13 +11,36 @@
   <body>
     <header class="site-header">
       <a class="mark" href="#top" aria-label="The Bald Dude Co. home"><img src="assets/brand-mark.png" alt="" /></a>
-      <nav aria-label="Primary navigation">
-        <a href="#work">Gallery</a>
-        <a href="#about">About</a>
-        <a href="#contact-form" data-contact-form>Contact</a>
-      </nav>
-      <a class="archive-link" href="#work">NYC Archive →</a>
+      <p class="nav-signal"><span>Press access</span><b>New York / Worldwide</b></p>
+      <div class="nav-controls">
+        <button class="menu-trigger" type="button" aria-controls="site-menu" aria-expanded="false"><span>Index</span><b>01—04</b></button>
+        <a class="booking-link" href="#contact-form" data-contact-form>Book me <span>↗</span></a>
+      </div>
     </header>
+
+    <dialog id="site-menu" class="nav-screen" aria-labelledby="menu-title">
+      <div class="nav-preview" aria-hidden="true">
+        <img class="is-active" src="assets/runway-floral.jpg" alt="" data-nav-preview="0" />
+        <img src="assets/sony-rooftop-motion-poster.jpg" alt="" data-nav-preview="1" />
+        <img src="assets/justin-von-braun-portrait.png" alt="" data-nav-preview="2" />
+        <img src="assets/hero-backstage-gaze.jpg" alt="" data-nav-preview="3" />
+      </div>
+      <header class="nav-screen-head">
+        <p><span>Private view</span><b id="menu-title">The NYC Index</b></p>
+        <button class="menu-close" type="button" aria-label="Close menu">Close ×</button>
+      </header>
+      <nav class="nav-index" aria-label="Site index">
+        <a href="#work" data-nav-link data-nav-target="0"><span>01</span><b>Work</b><em>Selected archive / direct flash</em><i>↗</i></a>
+        <a href="#reels" data-nav-link data-nav-target="1"><span>02</span><b>Motion</b><em>Reels / backstage / after dark</em><i>↗</i></a>
+        <a href="#about" data-nav-link data-nav-target="2"><span>03</span><b>Photographer</b><em>Justin von Braun / Brooklyn</em><i>↗</i></a>
+        <a href="#contact-form" data-nav-link data-nav-target="3" data-contact-form><span>04</span><b>Contact</b><em>Bookings / commissions / trouble</em><i>↗</i></a>
+      </nav>
+      <footer class="nav-screen-foot">
+        <a href="https://www.instagram.com/thebalddude.dng/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <span>40.7128° N / 74.0060° W</span>
+        <span>© 2026 / All photographs reserved</span>
+      </footer>
+    </dialog>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
@@ -88,7 +111,7 @@
         </div>
       </section>
 
-      <section class="reels" aria-labelledby="reels-title">
+      <section id="reels" class="reels" aria-labelledby="reels-title">
         <header class="reels-head">
           <p class="label">Motion archive / sound off, pulse on</p>
           <h2 id="reels-title">The flash<br />keeps moving.</h2>

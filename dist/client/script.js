@@ -1,6 +1,48 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let checkerTargetIndex = 0;
 
+const siteMenu = document.querySelector('.nav-screen');
+const menuTrigger = document.querySelector('.menu-trigger');
+const menuClose = document.querySelector('.menu-close');
+const menuLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+const menuPreviews = Array.from(document.querySelectorAll('[data-nav-preview]'));
+
+const selectMenuPreview = (targetIndex) => {
+  menuPreviews.forEach((preview) => {
+    preview.classList.toggle('is-active', preview.dataset.navPreview === String(targetIndex));
+  });
+};
+
+if (siteMenu && menuTrigger) {
+  menuTrigger.addEventListener('click', () => {
+    selectMenuPreview(0);
+    siteMenu.showModal();
+    menuTrigger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  });
+
+  const closeSiteMenu = () => {
+    if (siteMenu.open) siteMenu.close();
+  };
+
+  menuClose?.addEventListener('click', closeSiteMenu);
+  menuLinks.forEach((link) => {
+    const showLinkPreview = () => selectMenuPreview(link.dataset.navTarget);
+    link.addEventListener('pointerenter', showLinkPreview);
+    link.addEventListener('focus', showLinkPreview);
+    link.addEventListener('click', closeSiteMenu);
+  });
+
+  siteMenu.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeSiteMenu();
+  });
+  siteMenu.addEventListener('close', () => {
+    menuTrigger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  });
+}
+
 const initializeCheckerReveal = (target) => {
   if (target.classList.contains('checker-reveal')) return;
   const targetIndex = checkerTargetIndex;
