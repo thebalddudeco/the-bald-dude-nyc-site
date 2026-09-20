@@ -11,17 +11,17 @@
 .archive-close:hover .material-symbols-outlined, .archive-close:focus-visible .material-symbols-outlined { transform: rotate(0); }
 .archive-hero { min-height: min(72svh,760px); display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.6fr); grid-template-rows: auto 1fr; gap: 20px 56px; align-items: end; padding: clamp(42px,7vw,100px) clamp(18px,4vw,60px); background: var(--ink); overflow: hidden; }
 .archive-kicker { grid-column: 1 / -1; align-self: start; margin: 0; color: var(--acid); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
-.archive-hero h1 { margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(8rem,24vw,25rem); line-height: .67; letter-spacing: -.065em; }
-.archive-intro { align-self: end; max-width: 520px; margin: 0 0 8px; font-size: clamp(1rem,1.6vw,1.45rem); line-height: 1.45; }
+.archive-hero h1 { min-width: 0; margin: 0; color: var(--acid); font-family: var(--font-display); font-size: clamp(8rem,18vw,19rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); }
+.archive-intro { position: relative; z-index: 1; align-self: end; width: 100%; max-width: 520px; margin: 0 0 8px; font-size: clamp(1rem,1.6vw,1.45rem); line-height: 1.45; }
 .gallery-room { --room-bg: var(--acid); --room-fg: var(--ink); padding: clamp(42px,6vw,84px) 0 clamp(56px,8vw,110px); border-top: 2px solid var(--ink); overflow: hidden; background: var(--room-bg); color: var(--room-fg); }
 .gallery-room-paper { --room-bg: var(--paper); --room-fg: var(--ink); }
 .gallery-room-black { --room-bg: var(--ink); --room-fg: white; border-color: var(--acid); }
-.gallery-room-head { display: grid; grid-template-columns: 70px minmax(0,1fr) auto auto; gap: 20px; align-items: end; padding: 0 clamp(18px,4vw,60px) clamp(28px,4vw,48px); }
+.gallery-room-head { display: grid; grid-template-columns: 70px minmax(0,1fr) minmax(92px,auto) auto; column-gap: clamp(16px,2vw,28px); align-items: end; padding: 0 clamp(18px,4vw,60px) clamp(28px,4vw,48px); }
 .gallery-room-head > span { align-self: start; padding-top: .5em; color: var(--acid); font-size: .72rem; font-weight: 700; }
 .gallery-room-pink .gallery-room-head > span, .gallery-room-paper .gallery-room-head > span { color: var(--ink); }
-.gallery-room h2 { margin: 0; font-family: var(--font-display); font-size: clamp(3.5rem,10vw,10rem); line-height: .77; letter-spacing: -.045em; }
-.gallery-count { margin: 0 0 8px; font-size: .68rem; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
-.gallery-controls { display: flex; align-items: center; }
+.gallery-room h2 { margin: 0; font-family: var(--font-display); font-size: clamp(3.5rem,10vw,10rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); }
+.gallery-count { align-self: end; margin: 0 0 8px; font-size: .68rem; font-weight: 700; text-align: right; text-transform: uppercase; white-space: nowrap; }
+.gallery-controls { display: flex; align-items: center; align-self: end; }
 .gallery-controls button { display: grid; place-items: center; width: clamp(52px,5vw,72px); aspect-ratio: 1; border: 2px solid currentColor; border-right-width: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; }
 .gallery-controls button:last-child { border-right-width: 2px; }
 .gallery-controls .material-symbols-outlined { font-size: clamp(2rem,3vw,3rem); }
@@ -40,7 +40,7 @@
 .gallery-placeholder { min-height: clamp(330px,44vw,610px); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(22px,3vw,42px); border: 2px solid currentColor; scroll-snap-align: start; background: var(--acid); color: var(--ink); }
 .gallery-placeholder-invert { background: var(--ink); color: white; }
 .gallery-placeholder > span { font-size: .7rem; font-weight: 700; }
-.gallery-placeholder strong { align-self: center; font-family: var(--font-display); font-size: clamp(3.2rem,7vw,7rem); line-height: .78; letter-spacing: -.04em; }
+.gallery-placeholder strong { align-self: center; font-family: var(--font-display); font-size: clamp(3.2rem,7vw,7rem); line-height: var(--display-leading); letter-spacing: var(--display-tracking); }
 .gallery-placeholder p { margin: 0; font-size: .72rem; font-weight: 700; text-transform: uppercase; }
 .archive-footer { display: flex; justify-content: space-between; gap: 24px; padding: 18px clamp(18px,4vw,60px); background: var(--ink); color: var(--acid); font-size: .66rem; font-weight: 700; text-transform: uppercase; }
 .archive-footer a { text-decoration: none; }
