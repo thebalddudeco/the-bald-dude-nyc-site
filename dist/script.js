@@ -94,6 +94,17 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .checker-reveal').forEach((item) => observer.observe(item));
 
+const addInstagramHoverIcon = (link) => {
+  if (link.querySelector('.instagram-hover-icon')) return;
+  const icon = document.createElement('span');
+  icon.className = 'instagram-hover-icon material-symbols-outlined';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = 'arrow_outward';
+  link.appendChild(icon);
+};
+
+document.querySelectorAll('.instagram-grid a').forEach(addInstagramHoverIcon);
+
 const instagramFeed = document.querySelector('[data-instagram-feed]');
 const instagramStatus = document.querySelector('[data-instagram-status]');
 if (instagramFeed) {
@@ -119,6 +130,7 @@ if (instagramFeed) {
         image.loading = 'lazy';
         image.decoding = 'async';
         link.appendChild(image);
+        addInstagramHoverIcon(link);
         initializeCheckerReveal(link);
         fragment.appendChild(link);
       });
