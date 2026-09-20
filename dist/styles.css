@@ -108,6 +108,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .section-head > p:first-child { font-weight: 700; }
 .section-head h2, .about h2, .services h2, .contact h2 { margin: 0; font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: -.075em; }
 .section-head h2 { font-size: clamp(3.4rem, 9vw, 9.5rem); line-height: .76; letter-spacing: -.08em; }
+.section-head .apostrophe-gap { display: inline-block; margin-left: .04em; }
 .section-no { writing-mode: vertical-rl; }
 .image-wall { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(10px, 1.7vw, 26px); align-items: start; }
 .shot { position: relative; margin: 0; overflow: hidden; background: #111; }
