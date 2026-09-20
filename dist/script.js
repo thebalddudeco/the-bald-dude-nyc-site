@@ -6,6 +6,23 @@ const menuTrigger = document.querySelector('.menu-trigger');
 const menuClose = document.querySelector('.menu-close');
 const menuLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
 const menuPreviews = Array.from(document.querySelectorAll('[data-nav-preview]'));
+const menuPreview = document.querySelector('.nav-preview');
+
+const syncMenuDividers = () => {
+  if (!siteMenu?.open || !menuPreview || !menuLinks.length) return;
+  const menuRect = siteMenu.getBoundingClientRect();
+  const previewRect = menuPreview.getBoundingClientRect();
+  const cutRatio = Number.parseFloat(getComputedStyle(menuPreview).getPropertyValue('--cut-ratio')) || 0;
+  const cutAtTop = previewRect.left + previewRect.width * cutRatio;
+  const cutAtBottom = previewRect.left;
+
+  menuLinks.forEach((link) => {
+    const rowBottom = link.getBoundingClientRect().bottom;
+    const progress = Math.min(1, Math.max(0, (rowBottom - menuRect.top) / menuRect.height));
+    const cutEdge = cutAtTop + (cutAtBottom - cutAtTop) * progress;
+    link.style.setProperty('--line-width', `${Math.max(0, cutEdge - menuRect.left - 12)}px`);
+  });
+};
 
 const selectMenuPreview = (targetIndex) => {
   menuPreviews.forEach((preview) => {
@@ -19,6 +36,7 @@ if (siteMenu && menuTrigger) {
     siteMenu.showModal();
     menuTrigger.setAttribute('aria-expanded', 'true');
     document.body.classList.add('menu-open');
+    requestAnimationFrame(syncMenuDividers);
   });
 
   const closeSiteMenu = () => {
@@ -41,6 +59,8 @@ if (siteMenu && menuTrigger) {
     menuTrigger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
   });
+  window.addEventListener('resize', syncMenuDividers);
+  document.fonts?.ready.then(syncMenuDividers);
 }
 
 const initializeCheckerReveal = (target) => {
