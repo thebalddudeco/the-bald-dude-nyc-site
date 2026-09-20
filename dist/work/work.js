@@ -3,6 +3,10 @@ const archiveUrl = 'https://huggingface.co/datasets/TheBaldDudeCo/website-galler
 const carousels = Array.from(document.querySelectorAll('[data-carousel]'));
 
 const imageFocalPoints = {
+  'dscf0586.webp': '25% 50%',
+  'dscf0588.webp': '72% 50%',
+  'dscf0606.webp': '75% 50%',
+  'dscf0609.webp': '25% 50%',
   'dscf0880-1.webp': '77% 50%',
   'dscf0884-1.webp': '60% 50%',
   'dscf0965-1.webp': '58% 50%',
@@ -12,6 +16,21 @@ const imageFocalPoints = {
 
 const moveCarousel = (track, direction) => {
   const distance = Math.max(track.clientWidth * 0.78, 300);
+  const startScroll = Math.max((track.firstElementChild?.offsetLeft || 0) - track.offsetLeft, 0);
+  const maxScroll = Math.max(track.scrollWidth - track.clientWidth, 0);
+  const atStart = track.scrollLeft <= startScroll + 4;
+  const atEnd = track.scrollLeft >= maxScroll - 4;
+
+  if (direction > 0 && atEnd) {
+    track.scrollTo({ left: startScroll, behavior: 'smooth' });
+    return;
+  }
+
+  if (direction < 0 && atStart) {
+    track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    return;
+  }
+
   track.scrollBy({ left: direction * distance, behavior: 'smooth' });
 };
 
@@ -63,7 +82,7 @@ const createMediaCard = (item, albumName, index) => {
 
 const loadArchive = async () => {
   try {
-    const response = await fetch(`${archiveUrl}?v=3`, { mode: 'cors' });
+    const response = await fetch(`${archiveUrl}?v=4`, { mode: 'cors' });
     if (!response.ok) throw new Error(`Archive request failed with ${response.status}`);
     const archive = await response.json();
 
