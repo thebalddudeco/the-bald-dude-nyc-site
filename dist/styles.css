@@ -87,7 +87,7 @@ a { color: inherit; }
 .hero-brand { position: absolute; z-index: 3; top: 76px; right: 24px; width: clamp(92px, 9vw, 150px); height: auto; filter: drop-shadow(0 3px 18px rgba(0,0,0,.3)); }
 .hero::after { content: ""; position: absolute; inset: 46px 0 0; z-index: 1; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 74%); }
 .hero > :not(.hero-media, .hero-shade, .hero-brand, .hero-flash) { position: relative; z-index: 2; }
-.intro-copy { --intro-frame-gap: 18px; position: absolute !important; top: calc(16px + 58px + var(--intro-frame-gap)); left: var(--intro-frame-gap); width: min(410px, 40vw); margin: 0; font-size: clamp(.72rem, 1.08vw, .92rem); line-height: 1.48; }
+.intro-copy { --intro-frame-gap: 18px; position: absolute !important; top: calc(58px + var(--intro-frame-gap) + 1px); left: var(--intro-frame-gap); width: min(410px, 40vw); margin: 0; font-size: clamp(.72rem, 1.08vw, .92rem); line-height: 1.48; }
 .intro-copy span { background: var(--acid); color: var(--ink); padding: 2px 5px; font-weight: 700; }
 .location { position: absolute !important; top: clamp(184px, 14vw, 228px); right: 24px; margin: 0; font-size: .65rem; line-height: 1.45; text-align: right; text-transform: uppercase; }
 h1 { margin: 0 0 26px; font-family: var(--font-display); font-size: clamp(4.3rem, 12.8vw, 12rem); font-weight: 900; line-height: var(--display-leading); letter-spacing: var(--display-tracking); text-transform: uppercase; }
@@ -318,7 +318,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .nav-screen-foot { flex-wrap: wrap; }
   .nav-screen-foot span:last-child { display: none; }
   .hero { min-height: calc(100svh - 16px); padding: 90px 14px 20px; }
-  .intro-copy { top: calc(8px + 52px + var(--intro-frame-gap)); left: var(--intro-frame-gap); width: 72vw; }
+  .intro-copy { top: calc(52px + var(--intro-frame-gap) + 1px); left: var(--intro-frame-gap); width: 72vw; }
   .location { display: none; }
   .hero-brand { display: none; }
   .hero-sequence { right: auto; bottom: 148px; left: 14px; }
