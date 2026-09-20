@@ -41,6 +41,21 @@ $sourceRoot = (Resolve-Path -LiteralPath $Source).Path.TrimEnd('\')
 $outputRoot = [IO.Path]::GetFullPath($Output).TrimEnd('\')
 $ffmpeg = (Get-Command ffmpeg -ErrorAction Stop).Source
 
+$leilanyEditorialSelects = @(
+    'LEILANY #3.jpg',
+    'LEILANY #6.jpg',
+    'LEILANY #8.jpg',
+    'LEILANY #12.jpg',
+    'LEILANY #15.jpg',
+    'LEILANY #18.jpg',
+    'LEILANY #23.jpg',
+    'LEILANY #29.jpg',
+    'LEILANY #31.jpg',
+    'LEILANY #38.jpg',
+    'LEILANY #44.jpg',
+    'LEILANY #50.jpg'
+)
+
 if (Test-Path -LiteralPath $outputRoot) {
     throw "Output already exists: $outputRoot"
 }
@@ -52,6 +67,9 @@ Add-Type -AssemblyName System.Drawing
 
 $sourceFiles = Get-ChildItem -LiteralPath $sourceRoot -Recurse -File |
     Where-Object { $_.Extension.ToLowerInvariant() -in '.jpg', '.jpeg', '.mp4' } |
+    Where-Object {
+        $_.Directory.Name -ne 'LEILANY' -or $_.Name -in $leilanyEditorialSelects
+    } |
     Sort-Object FullName
 
 $planned = foreach ($file in $sourceFiles) {
@@ -180,7 +198,7 @@ pretty_name: The Bald Dude Co. Website Gallery
 
 # The Bald Dude Co. Website Gallery
 
-Web-ready portfolio media for The Bald Dude Co. The album structure and public file URLs are published in `archive.json` for use by the official website.
+Web-ready portfolio media for The Bald Dude Co. The album structure and public file URLs are published in archive.json for use by the official website.
 
 Copyright The Bald Dude Co. All rights reserved. These files are not licensed for redistribution, resale, dataset compilation, or model training.
 "@
