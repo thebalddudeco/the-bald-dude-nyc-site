@@ -17,7 +17,7 @@ body.dialog-open, body.menu-open { overflow: hidden; }
 a { color: inherit; }
 .material-symbols-outlined { display: inline-block; overflow: hidden; font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; font-size: 1em; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: "liga"; -webkit-font-feature-settings: "liga"; -webkit-font-smoothing: antialiased; }
 .site-header { position: fixed; inset: 16px 16px auto; z-index: 20; height: 58px; display: flex; align-items: stretch; pointer-events: none; }
-.mark, .nav-signal, .nav-controls { pointer-events: auto; box-shadow: 0 8px 28px rgba(0,0,0,.24); backdrop-filter: blur(14px); }
+.mark, .nav-signal, .nav-controls { pointer-events: auto; }
 .mark { flex: 0 0 82px; display: grid; place-items: center; overflow: hidden; background: var(--acid); color: var(--ink); text-decoration: none; }
 .mark img { display: block; width: 54px; height: 40px; object-fit: contain; }
 .nav-signal { display: grid; align-content: center; gap: 3px; min-width: 210px; margin: 0; padding: 0 16px; border: 1px solid var(--line); border-left: 0; background: rgba(4,5,7,.9); text-transform: uppercase; }
