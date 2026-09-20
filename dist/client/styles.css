@@ -95,8 +95,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .status i { display: inline-block; width: 6px; height: 6px; margin: 0 10px 1px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 13px var(--acid); }
 .hero-sequence { position: absolute !important; right: clamp(235px, 27vw, 380px); bottom: 30px; margin: 0; font-size: .62rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .hero-sequence span { color: var(--acid); }
-.enter { position: absolute !important; right: 0; bottom: 0; width: clamp(215px, 25vw, 350px); height: clamp(128px, 18vh, 190px); display: flex; align-items: center; justify-content: space-between; padding: 24px 22px 20px clamp(45px, 7vw, 100px); background: var(--acid); color: var(--ink); text-decoration: none; text-transform: uppercase; font-family: var(--font-display); font-size: clamp(.9rem, 1.5vw, 1.3rem); font-weight: 900; line-height: .95; clip-path: polygon(27% 0,100% 0,100% 100%,0 100%); }
-.enter b { align-self: flex-end; font-family: "Material Symbols Outlined"; font-size: clamp(3rem, 7vw, 7rem); line-height: .6; font-weight: 400; }
+.enter { position: absolute !important; right: 0; bottom: 0; width: clamp(215px, 25vw, 350px); height: auto; display: flex; align-items: center; justify-content: space-between; padding: 50px 22px 50px clamp(45px, 7vw, 100px); background: var(--acid); color: var(--ink); text-decoration: none; text-transform: uppercase; font-family: var(--font-display); font-size: clamp(.9rem, 1.5vw, 1.3rem); font-weight: 900; line-height: .95; clip-path: polygon(27% 0,100% 0,100% 100%,0 100%); }
+.enter b { align-self: center; font-family: "Material Symbols Outlined"; font-size: 2em; line-height: 1; font-weight: 400; }
 .enter:hover b { transform: translate(7px, 7px); }
 .ticker { display: flex; overflow: hidden; background: var(--acid); color: var(--ink); border-block: 1px solid var(--ink); font-family: var(--font-display); font-size: clamp(1.25rem, 2.6vw, 2.65rem); font-weight: 900; text-transform: uppercase; white-space: nowrap; }
 .ticker div { min-width: max-content; padding: 11px 0 9px; animation: ticker 22s linear infinite; }
@@ -318,7 +318,7 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
   .hero-brand { display: none; }
   .hero-sequence { right: auto; bottom: 148px; left: 14px; }
   h1 { margin-bottom: 160px; font-size: clamp(3.7rem, 20vw, 6.4rem); }
-  .enter { width: 210px; height: 125px; }
+  .enter { width: 210px; height: auto; }
   .section-head { grid-template-columns: 1fr auto; }
   .section-head h2 { grid-column: 1 / -1; grid-row: 2; }
   .image-wall { grid-template-columns: 1fr 1fr; }
