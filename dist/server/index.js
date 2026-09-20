@@ -1,5 +1,7 @@
 const PROFILE_URL = 'https://www.instagram.com/thebalddude.dng/';
-const PIXIESET_FEED_URL = 'https://www.thebalddude.co/contact/';
+// The current Pixieset site owns the authenticated Instagram connection.
+// Reading its public feed keeps this site current without exposing Meta credentials.
+const LIVE_FEED_URL = 'https://www.thebalddude.co/contact/';
 
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
@@ -35,7 +37,7 @@ export default {
 
     if (url.pathname === '/api/instagram-feed') {
       try {
-        const upstream = await fetch(PIXIESET_FEED_URL, {
+        const upstream = await fetch(LIVE_FEED_URL, {
           headers: {
             accept: 'text/html',
             'user-agent': 'The Bald Dude Co. website feed/1.0',
@@ -46,7 +48,13 @@ export default {
 
         const images = extractInstagramImages(await upstream.text());
         if (images.length === 0) return json({ error: 'No feed images found' }, 502);
-        return json({ profile: '@thebalddude.dng', profileUrl: PROFILE_URL, images });
+        return json({
+          profile: '@thebalddude.dng',
+          profileUrl: PROFILE_URL,
+          source: 'instagram',
+          updatedAt: new Date().toISOString(),
+          images,
+        });
       } catch {
         return json({ error: 'Feed temporarily unavailable' }, 502);
       }

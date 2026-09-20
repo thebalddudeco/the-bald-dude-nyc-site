@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "playlists": [
+    {
+      "id": "whats-your-vibe",
+      "number": "01",
+      "title": "WHAT'S YOUR VIBE",
+      "category": "CURATED ROTATION",
+      "description": "A playlist from The Bald Dude Co. sound index.",
+      "spotifyUrl": "https://open.spotify.com/playlist/1KUN601Mdn8ZDkDJdcEwDo",
+      "embedUrl": "https://open.spotify.com/embed/playlist/1KUN601Mdn8ZDkDJdcEwDo?utm_source=generator&theme=0",
+      "imageUrl": "https://mosaic.scdn.co/300/ab67616d00001e022c6086fe26895b2422d9b813ab67616d00001e023bdab0e538676fc4cf51f4a4ab67616d00001e0247649179b88d0e7a7f6f59a1ab67616d00001e025f306aa63a7bb18e7bf9152b",
+      "footer": false
+    },
+    {
+      "id": "in-the-cavern",
+      "number": "02",
+      "title": "IN THE CAVERN",
+      "category": "MAIN ROTATION",
+      "description": "A New York street and studio soundtrack curated by The Bald Dude.",
+      "spotifyUrl": "https://open.spotify.com/playlist/0LhM5t4RpB4R3aYvGeKY3e",
+      "embedUrl": "https://open.spotify.com/embed/playlist/0LhM5t4RpB4R3aYvGeKY3e?utm_source=generator&theme=0&si=3fea590ef729406c",
+      "imageUrl": "https://mosaic.scdn.co/300/ab67616d00001e02a97f3fad25245a1453b1b3b2ab67616d00001e02b6567be9f8b996a2b5f9b7faab67616d00001e02d43c59e52d6a8032a4e27fc4ab67616d00001e02ead13021d0f2957958081f28",
+      "footer": true
+    },
+    {
+      "id": "90s-alternative",
+      "number": "03",
+      "title": "90s ALTERNATIVE",
+      "category": "CURATED ROTATION",
+      "description": "A playlist from The Bald Dude Co. sound index.",
+      "spotifyUrl": "https://open.spotify.com/playlist/4m3KEaGg4PXWCbyAIPkCs2",
+      "embedUrl": "https://open.spotify.com/embed/playlist/4m3KEaGg4PXWCbyAIPkCs2?utm_source=generator&theme=0",
+      "imageUrl": "https://mosaic.scdn.co/300/ab67616d00001e024dea1c10af8d7bd13e59191cab67616d00001e02a28b0866f9b90e5b4705c6dfab67616d00001e02b1c74a6cc8caab1df5ea500eab67616d00001e02de19c68b879e07d8f26ec5b2",
+      "footer": false
+    },
+    {
+      "id": "the-monday-metal-show",
+      "number": "04",
+      "title": "THE MONDAY METAL SHOW",
+      "category": "CURATED ROTATION",
+      "description": "A playlist from The Bald Dude Co. sound index.",
+      "spotifyUrl": "https://open.spotify.com/playlist/2bQGDNpAMmY0xgydH3I1xq",
+      "embedUrl": "https://open.spotify.com/embed/playlist/2bQGDNpAMmY0xgydH3I1xq?utm_source=generator&theme=0",
+      "imageUrl": "https://mosaic.scdn.co/300/ab67616d00001e025190e54cbde28bf9ef3eceecab67616d00001e0275a9cde08f286d9420709048ab67616d00001e02e5f6f7ec99735d7b870f18aeab67616d00001e02e8a1ae591befe4bb0a9261ab",
+      "footer": false
+    }
+  ]
+}

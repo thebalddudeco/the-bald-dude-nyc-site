@@ -141,7 +141,17 @@ if (instagramFeed) {
     })
     .catch(() => {
       instagramFeed.closest('.instagram-feed')?.classList.add('is-fallback');
-      if (instagramStatus) instagramStatus.textContent = 'Latest selected work';
+      if (instagramStatus) instagramStatus.textContent = 'Feed temporarily unavailable';
+      const message = document.createElement('p');
+      message.className = 'instagram-feed-message';
+      message.append('Instagram could not refresh this moment. ');
+      const profileLink = document.createElement('a');
+      profileLink.href = 'https://www.instagram.com/thebalddude.dng/';
+      profileLink.target = '_blank';
+      profileLink.rel = 'noopener noreferrer';
+      profileLink.textContent = 'View the live profile';
+      message.appendChild(profileLink);
+      instagramFeed.replaceChildren(message);
     });
 }
 

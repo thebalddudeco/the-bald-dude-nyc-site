@@ -172,6 +172,8 @@ h1 strong { display: block; color: var(--acid); font-weight: inherit; }
 .instagram-grid img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.06) saturate(.94); transition: transform .45s ease; }
 .instagram-grid a:hover img { transform: scale(1.05); }
 .instagram-grid a:hover .instagram-hover-icon, .instagram-grid a:focus-visible .instagram-hover-icon { opacity: 1; }
+.instagram-feed-message { grid-column: 1 / -1; margin: 0; padding: clamp(48px, 8vw, 110px) 20px; border-top: 1px solid #353535; border-bottom: 1px solid #353535; color: #aaa; text-align: center; text-transform: uppercase; }
+.instagram-feed-message a { position: static; display: inline; aspect-ratio: auto; margin-left: .35em; color: var(--acid); background: transparent; }
 .sound-footer { margin: 0 0 clamp(56px,8vw,110px); border-top: 2px solid var(--acid); border-bottom: 2px solid var(--acid); }
 .sound-footer-head { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; padding: 22px 0 18px; }
 .sound-footer-head p { margin: 0 0 8px; }
